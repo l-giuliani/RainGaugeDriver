@@ -3,11 +3,11 @@
 
 #include "types.h"
 
-#define MPS_START_MEASURE   /*start measure command*/""
-#define MPS_START_MEASURE1  /*start measure command*/""
-#define MPS_READ_STATUS     /*read status command*/ ""
-#define MPS_READ_DATA       /*read data command*/""
-#define MPS_INIT            /*mps init command*/""
+#define MPS_START_MEASURE   "K$"
+#define MPS_START_MEASURE1  "K1$"
+#define MPS_READ_STATUS     "SR$"
+#define MPS_READ_DATA       "DR$"
+#define MPS_INIT            "PI"
 
 #define START_MEASURE_ID    0
 #define START_MEASURE1_ID   1

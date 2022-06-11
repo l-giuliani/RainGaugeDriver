@@ -13,12 +13,12 @@ typedef struct {
 } REQUEST_RESPONSE_MAP;
 
 REQUEST_RESPONSE_MAP rr_map[] = {
-    {"?!", "", "0\r\n"},
-    {"M!", "", "00003\r\n"},
-    {"D0!", "M!", "0+0.2+120+0.8\r\n"},
-    {"M1!", "00003\r\n"},
-    {"D0!", "M1!", "0+0.42+2-1\r\n"},
-    {"R0!", "", "0+1\r\n"}
+    {"PI", "", "0\r\n"},
+    {"K$", "", "00005\r\n"},
+    {"DR$", "K$", "0+0.2+120+0.8\r\n"},
+    {"K1$", "", "00005\r\n"},
+    {"DR$", "K1$", "0+0.42+2-1\r\n"},
+    {"SR$", "", "0+1\r\n"}
 };
 #define RR_MAP_LEN sizeof(rr_map)/sizeof(REQUEST_RESPONSE_MAP)
 
@@ -48,14 +48,14 @@ int uart_rx_data(byte* response_buffer)
     {
         if(strcmp(rr_map[i].request, current_command) == 0)
         {
-            if(strcmp(rr_map[i].request, "D0!") == 0)
+            if(strcmp(rr_map[i].request, "DR$") == 0)
             {
-                if(strcmp(prec_command, "M!") == 0 && strcmp(rr_map[i].prec_command, "M!") == 0)
+                if(strcmp(prec_command, "K$") == 0 && strcmp(rr_map[i].prec_command, "K$") == 0)
                 {
                     len = sprintf(response_buffer, "%s", rr_map[i].response);
                     return len;
                 }
-                else if(strcmp(prec_command, "M1!") == 0 && strcmp(rr_map[i].prec_command, "M1!") == 0)
+                else if(strcmp(prec_command, "K1$") == 0 && strcmp(rr_map[i].prec_command, "K1$") == 0)
                 {
                     len = sprintf(response_buffer, "%s", rr_map[i].response);
                     return len;
